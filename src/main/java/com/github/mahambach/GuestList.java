@@ -6,7 +6,6 @@ import lombok.Setter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 import java.io.IOException;
 
@@ -25,15 +24,14 @@ public class GuestList {
         }
     }
 
-    public List<String> readFromFile(String filename) {
+    public void readFromFile(String filename) {
         Path path = Paths.get(filename);
         try {
             List<String> names = Files.readAllLines(path);
             System.out.println("Namen erfolgreich aus Datei gelesen.");
-            return names;
+            this.guests.addAll(names);
         } catch (IOException e) {
             System.err.println("Fehler beim Lesen der Datei: " + e.getMessage());
-            return new ArrayList<>();
         }
     }
 }
